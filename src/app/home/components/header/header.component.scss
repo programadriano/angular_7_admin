@@ -1,9 +1,8 @@
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
+.example-fill-remaining-space {  
   flex: 1 1 auto;
 }
 
-.btn-center{
-text-align: center;
+.btn-menu{
+  justify-content:center;
+  margin-left: 27%;
 }
