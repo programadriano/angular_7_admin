@@ -6,18 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptorService } from './share/auth/http-interceptor.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './share/auth/auth.guard';
+import { AlertService } from './share/services/alert.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [HttpInterceptorService],
+  providers: [HttpInterceptorService, AuthGuard, AlertService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

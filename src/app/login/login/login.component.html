@@ -1,18 +1,13 @@
 <div class="form-box">
   <div class="head">Welcome</div>
-  <form action="#" id="login-form">
+  <form id="login-form" (submit)="logIn(userid.value,password.value, $event)">
     <div class="form-group">
-      <label class="label-control">
-        <span class="label-text">Email</span>
-      </label>
-      <input type="email" name="email" class="form-control" />
+
+      <input type="text" placeholder="Usuário" #userid class="form-control" />
     </div>
     <div class="form-group">
-      <label class="label-control">
-        <span class="label-text">Password</span>
-      </label>
-      <input type="password" name="password" class="form-control" />
+      <input type="password" #password name="password" placeholder="Senha" class="form-control" />
     </div>
-    <input type="submit" (click)="logIn()"  value="Login" class="btn" />
+    <input type="submit" value="Login" class="btn" />
   </form>
 </div>

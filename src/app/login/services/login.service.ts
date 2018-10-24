@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpUtilService } from '../../share/services/http-util-service';
-import { RequestOptions, Headers } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
+
 import { User } from '../../models/user';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,29 +13,24 @@ import 'rxjs/add/operator/catch';
   providedIn: 'root'
 })
 export class LoginService {
-  private loginUrl = 'token/request';
-  constructor(private http: HttpClient, private httpUtil: HttpUtilService) {}
+  private loginUrl = 'api/login';
+  constructor(private http: Http, private httpUtil: HttpUtilService) {}
 
-  logIn(user: User): Observable<any> {
-    const params = JSON.stringify({
-      grant_type: 'password',
-      username: user.userName,
-      password: user.password
-    });
+  logIn(user, password): Observable<any> {
+
     const url = this.httpUtil.url(this.loginUrl);
-    const body =
-      'username=' +
-      user.userName +
-      '&password=' +
-      user.password +
-      '&grant_type=password';
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
+
+    const params = JSON.stringify(
+      { 'ID': user, 'chaveAcesso': password });
+
+
+    const headers = new Headers({
+      'Content-Type': 'application/json'
     });
     const options = new RequestOptions({ headers: headers });
 
     return this.http
-      .post(url, body, options)
+      .post(url, params, options)
       .map(this.httpUtil.extrairDados)
       .catch(this.httpUtil.processarErros);
   }
